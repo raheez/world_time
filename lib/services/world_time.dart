@@ -14,7 +14,7 @@ class WorldTime{
 
 
   Future<void> getTime() async {
-    String url = 'https://www.worldtimeapi.org/api/timezone/Europe/London';
+    String url = 'https://www.worldtimeapi.org/api/timezone/${this.url}';
     final response = await get(Uri.parse(url));
     print(response.body);
     Map data = jsonDecode(response.body);
