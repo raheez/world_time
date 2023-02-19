@@ -48,6 +48,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
               child: Card(
                 child: ListTile(
                   onTap: (){
+                    updateTime(locations[index]);
                     print(locations[index].location);
                   },
                   title: Text(locations[index].location),
@@ -59,5 +60,16 @@ class _ChooseLocationState extends State<ChooseLocation> {
             );
           }),
     );
+  }
+
+  void updateTime(WorldTime location) async{
+    await location.getTime();
+    Navigator.pop(context,{
+      'location': location.location,
+      'flag': location.flag,
+      'time': location.time,
+      'isDay': location.mIsDay
+    });
+
   }
 }
