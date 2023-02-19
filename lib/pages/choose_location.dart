@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
 
+import '../services/world_time.dart';
+
 class ChooseLocation extends StatefulWidget {
   @override
   State<ChooseLocation> createState() => _ChooseLocationState();
 }
 
 class _ChooseLocationState extends State<ChooseLocation> {
-  int counter = 0;
 
-  void getData() async {
-    //simulate nw request for a username
-    String username = await Future.delayed(Duration(seconds: 3), () {
-      print('yoshi');
-      return 'yoshi';
-    });
 
-    String bio = await Future.delayed(Duration(seconds: 4), () {
-      print('this is the bio');
-      return 'this is the bio';
-    });
-
-    print('statement');
-    print('$username-$bio');
-  }
+  List<WorldTime> locations = [
+    WorldTime(url: 'Europe/London', location: 'London', flag: 'uk.png'),
+    WorldTime(url: 'Europe/Berlin', location: 'Athens', flag: 'greece.png'),
+    WorldTime(url: 'Africa/Cairo', location: 'Cairo', flag: 'egypt.png'),
+    WorldTime(url: 'Africa/Nairobi', location: 'Nairobi', flag: 'kenya.png'),
+    WorldTime(url: 'America/Chicago', location: 'Chicago', flag: 'usa.png'),
+    WorldTime(url: 'America/New_York', location: 'New York', flag: 'usa.png'),
+    WorldTime(url: 'Asia/Seoul', location: 'Seoul', flag: 'south_korea.png'),
+    WorldTime(url: 'Asia/Jakarta', location: 'Jakarta', flag: 'indonesia.png'),
+  ];
 
   @override
   void initState() {
     super.initState();
     print('init_state_run');
-    getData();
   }
 
   @override
@@ -41,14 +37,16 @@ class _ChooseLocationState extends State<ChooseLocation> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: ElevatedButton.icon(
-          onPressed: () {
-            setState(() {
-              counter += 1;
-            });
-          },
-          icon: Icon(Icons.ac_unit),
-          label: Text('counter value is ${counter}')),
+      body:ListView.builder(
+          itemCount: locations.length,
+          itemBuilder: (context,index){
+            return Card(
+              child: ListTile(
+                onTap: (){},
+                title: Text(locations[index].location),
+              ),
+            );
+          }),
     );
   }
 }

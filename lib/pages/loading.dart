@@ -10,22 +10,21 @@ class Loading extends StatefulWidget {
   State<Loading> createState() => _LoadingState();
 }
 
-
 class _LoadingState extends State<Loading> {
-
   String time = 'loading';
 
   void getTime() async {
-    WorldTime worldTime = WorldTime(location: 'Berlin', flag: 'berlin.png', url: 'Europe/Berlin');
+    WorldTime worldTime =
+        WorldTime(location: 'Berlin', flag: 'berlin.png', url: 'Europe/Berlin');
     await worldTime.getTime();
-    print('fetched_value_is_'+worldTime.time);
+    print('fetched_value_is_' + worldTime.time);
 
-    print('Navigator'+worldTime.mIsDay.toString());
-    Navigator.pushReplacementNamed(context,'/home',arguments: {
-      'location' : worldTime.location,
-      'flag' : worldTime.flag,
-      'time' : time,
-      'isDay' : worldTime.mIsDay
+    print('Navigator' + worldTime.mIsDay.toString());
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'location': worldTime.location,
+      'flag': worldTime.flag,
+      'time': worldTime.time,
+      'isDay': worldTime.mIsDay
     });
   }
 
@@ -35,7 +34,6 @@ class _LoadingState extends State<Loading> {
     getTime();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,10 +41,9 @@ class _LoadingState extends State<Loading> {
         centerTitle: true,
         title: Text('choose location'),
       ),
-      body: SizedBox(
+      body: Center(
         child: Text('${time.toString()}'),
-      )
-      ,
+      ),
     );
   }
 }
