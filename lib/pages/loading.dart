@@ -20,14 +20,12 @@ class _LoadingState extends State<Loading> {
     await worldTime.getTime();
     print('fetched_value_is_'+worldTime.time);
 
-    setState(() {
-      time = worldTime.time;
-    });
-
+    print('Navigator'+worldTime.mIsDay.toString());
     Navigator.pushReplacementNamed(context,'/home',arguments: {
-      'location' : instance.location,
-      'flag' : instance.flag,
-      'time' : time
+      'location' : worldTime.location,
+      'flag' : worldTime.flag,
+      'time' : time,
+      'isDay' : worldTime.mIsDay
     });
   }
 

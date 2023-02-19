@@ -9,6 +9,7 @@ class WorldTime{
   String location;
   String flag;
   String time='';
+  bool mIsDay=false;
   String url;
 
   WorldTime({required this.location,required this.flag,required this.url});
@@ -32,6 +33,8 @@ class WorldTime{
       now = now.add(Duration(hours: int.parse(utc_offset)));
       Logger().d('value_of_now_'+now.toString());
 
+      mIsDay = now.hour>6 && now.hour<15 ? true : false;
+      print('mIsDay_value'+mIsDay.toString());
       time = now.toString();
       time = DateFormat.jm().format(now);
     }catch(e){
